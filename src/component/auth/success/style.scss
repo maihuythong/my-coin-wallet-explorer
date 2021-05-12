@@ -1,0 +1,16 @@
+.success {
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .wallet-id {
+    flex-direction: column;
+    display: flex;
+  };
+
+  .ip {
+    width: 300px
+  }
+}
