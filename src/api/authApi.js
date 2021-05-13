@@ -10,7 +10,7 @@ const authApi = {
     return axiosClient.post(url, params);
   },
   createAddress: (params) => {
-    const url = `operator/wallets/${params.walletId}/addresses`;
+    const url = `operator/wallets/${params.walletId}/address`;
     return axiosClient.post(url, params);
   }
 };

@@ -33,6 +33,9 @@ const App = () => {
         <Route exact path='/success'>
           <Success />
         </Route>
+        <Route exact path='/account'>
+          <Account />
+        </Route>
         {/* </QueryParamProvider> */}
       </Switch>
     </BrowserRouter>

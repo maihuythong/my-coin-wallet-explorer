@@ -18,7 +18,6 @@ const HeaderBar = (props) => {
   }, [walletId]);
 
   useEffect(() => {
-    console.log('cc');
     setWalletId(localStorage.getItem('walletId'));
   }, [props.isLogin])
 

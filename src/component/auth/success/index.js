@@ -43,6 +43,7 @@ const Success = (props) => {
         setIsLoading(false);
       }
     } catch (e) {
+      console.log(e.response.data.message);
       openNotificationWithIcon('error', e.message);
       setIsLoading(false);
     }
