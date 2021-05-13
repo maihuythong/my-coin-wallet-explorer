@@ -4,15 +4,11 @@ import {
   KeyOutlined,
   UserOutlined,
   MoneyCollectOutlined,
-  SecurityScanOutlined
 } from '@ant-design/icons';
 
 import './style.scss';
 import walletApi from '../../api/walletApi';
 import { useHistory } from 'react-router-dom';
-import { Tabs } from 'antd';
-
-const { TabPane } = Tabs;
 
 const Balance = (props) => {
   let history = useHistory();

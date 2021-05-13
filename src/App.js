@@ -6,6 +6,7 @@ import Home from './component/home';
 import RegisterForm from './component/auth/signup';
 import Success from './component/auth/success';
 import Account from './component/account';
+import Explorer from './component/explorer';
 // import { QueryParamProvider } from 'use-query-params';
 // import SignIn from './components/account/signIn';
 // import SignUp from './components/account/signUp';
@@ -35,6 +36,9 @@ const App = () => {
         </Route>
         <Route exact path='/account'>
           <Account />
+        </Route>
+        <Route exact path='/explorer'>
+          <Explorer />
         </Route>
         {/* </QueryParamProvider> */}
       </Switch>

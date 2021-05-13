@@ -47,10 +47,10 @@ const HeaderBar = (props) => {
                   Account
                 </Menu.Item>
                 <Menu.Item
-                  key={"Transfer"}
-                // onClick={() => gotoPage("item3")}
+                  key={"Explorer"}
+                  onClick={() => history.push('/explorer')}
                 >
-                  Transfer
+                  Explorer
                 </Menu.Item>
               </Menu>
             </Col>
