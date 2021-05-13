@@ -7,12 +7,19 @@ import './style.scss';
 import authApi from '../../../api/authApi';
 import { useHistory } from 'react-router-dom';
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
   let history = useHistory();
+  const { setLoginState } = props;
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (values) => {
     handleLogin(values);
+  };
+
+  const openNotificationWithIcon = (type, message) => {
+    notification[type]({
+      message: message
+    });
   };
 
   const handleLogin = async (params) => {
@@ -21,23 +28,17 @@ const RegisterForm = () => {
       const response = await authApi.createWallet(params);
       if (response.err === '400') {
         setIsLoading(false);
-        openNotificationWithIcon(response.message);
       } else {
         const { id } = response;
         localStorage.setItem('walletId', id);
-        console.log(id);
         setIsLoading(false);
+        setLoginState();
+        openNotificationWithIcon('success', 'Wallet created');
         history.push('/success');
       }
     } catch (e) {
-      openNotificationWithIcon(e.message);
+      openNotificationWithIcon('error', e.message);
     }
-  };
-
-  const openNotificationWithIcon = type => {
-    notification[type]({
-      message: 'Successful!'
-    });
   };
 
   return (

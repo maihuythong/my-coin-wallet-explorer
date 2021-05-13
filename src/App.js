@@ -5,6 +5,7 @@ import HeaderBar from './component/headerBar';
 import Home from './component/home';
 import RegisterForm from './component/auth/signup';
 import Success from './component/auth/success';
+import Account from './component/account';
 // import { QueryParamProvider } from 'use-query-params';
 // import SignIn from './components/account/signIn';
 // import SignUp from './components/account/signUp';
@@ -17,7 +18,7 @@ const App = () => {
   };
   return (
     <BrowserRouter>
-      <HeaderBar />
+      <HeaderBar isLogin={isLogin} />
       <Switch>
         {/* <QueryParamProvider> */}
         <Route exact path='/'>
@@ -27,7 +28,7 @@ const App = () => {
           {/* <SignIn setLoginState={setLoginState} /> */}
         </Route>
         <Route exact path='/register'>
-          <RegisterForm />
+          <RegisterForm setLoginState={setLoginState} />
         </Route>
         <Route exact path='/success'>
           <Success />

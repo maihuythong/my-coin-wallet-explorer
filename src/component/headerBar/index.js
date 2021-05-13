@@ -9,6 +9,19 @@ const { Title } = Typography;
 const HeaderBar = (props) => {
   let history = useHistory();
 
+  const [walletId, setWalletId] = useState('');
+
+
+
+  useEffect(() => {
+    setWalletId(localStorage.getItem('walletId'));
+  }, [walletId]);
+
+  useEffect(() => {
+    console.log('cc');
+    setWalletId(localStorage.getItem('walletId'));
+  }, [props.isLogin])
+
   return (
     <Row justify='center'>
       <Col xl={24} lg={24} md={24} sm={24} xs={24}>
@@ -29,7 +42,8 @@ const HeaderBar = (props) => {
                 </Menu.Item>
                 <Menu.Item
                   key={"Account"}
-                // onClick={() => gotoPage("item2")}
+                  onClick={() => history.push('/account')}
+                // disabled={walletId?.length != 0 ? 'false' : 'true'}
                 >
                   Account
                 </Menu.Item>
