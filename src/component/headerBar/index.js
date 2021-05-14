@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
 import { Row, Col, Typography, Layout, Menu } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined, PoweroffOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -21,11 +21,16 @@ const HeaderBar = (props) => {
     setWalletId(localStorage.getItem('walletId'));
   }, [props.isLogin])
 
+  const logout = () => {
+    localStorage.setItem('walletId', '');
+    history.push('/');
+  }
+
   return (
     <Row justify='center'>
       <Col xl={24} lg={24} md={24} sm={24} xs={24}>
         <Header className='header-fixed'>
-          <Row>
+          <Row className='row-menu'>
             <Col>
               <Menu
                 theme='dark'
@@ -35,7 +40,7 @@ const HeaderBar = (props) => {
               >
                 <Menu.Item
                   key="Home"
-                // onClick={() => gotoPage("item1")}
+                  onClick={() => history.push('/')}
                 >
                   Home
                 </Menu.Item>
@@ -51,6 +56,21 @@ const HeaderBar = (props) => {
                   onClick={() => history.push('/explorer')}
                 >
                   Explorer
+                </Menu.Item>
+              </Menu>
+            </Col>
+            <Col>
+              <Menu
+                mode="horizontal"
+                theme="dark"
+                style={{ float: 'right' }}
+              >
+                <Menu.Item
+                  key={"Logout"}
+                  style={{ float: 'right' }}
+                  onClick={() => logout()}
+                >
+                  <PoweroffOutlined />
                 </Menu.Item>
               </Menu>
             </Col>

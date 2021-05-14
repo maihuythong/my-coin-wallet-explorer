@@ -12,6 +12,10 @@ const authApi = {
   createAddress: (params) => {
     const url = `operator/wallets/${params.walletId}/address`;
     return axiosClient.post(url, params);
+  },
+  accessWallet: (params) => {
+    const url = `/operator/wallet/login`;
+    return axiosClient.post(url, params);
   }
 };
 export default authApi;

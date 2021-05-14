@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import HeaderBar from './component/headerBar';
 import Home from './component/home';
 import RegisterForm from './component/auth/signup';
+import SignIn from './component/auth/signin';
 import Success from './component/auth/success';
 import Account from './component/account';
 import Explorer from './component/explorer';
@@ -26,7 +27,7 @@ const App = () => {
           <Home />
         </Route>
         <Route exact path='/login'>
-          {/* <SignIn setLoginState={setLoginState} /> */}
+          <SignIn setLoginState={setLoginState} />
         </Route>
         <Route exact path='/register'>
           <RegisterForm setLoginState={setLoginState} />

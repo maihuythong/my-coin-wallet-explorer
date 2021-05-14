@@ -31,7 +31,10 @@ const Balance = (props) => {
       if (response.err === '400') {
         setIsLoading(false);
       } else {
-        if (response?.length != 1) throw new Error("Wallet have no address, please create address before!");
+        if (response?.length != 1) {
+          history.push('/success');
+          throw new Error("Wallet have no address, please create address before!");
+        }
         setAddress(response[0]);
         setIsLoading(false);
         getBalance(response[0]);
@@ -74,11 +77,13 @@ const Balance = (props) => {
         params.fromAddress = address;
       }
       const response = await walletApi.createTransaction(params);
-      if (response.err === '400') {
+      if (response.status === '209') {
+        openNotificationWithIcon('error', response.message);
         setIsLoading(false);
       } else {
-        setAddress(response[0]);
+        openNotificationWithIcon('success', 'Transaction created successfully!');
         setIsLoading(false);
+        getBalance(address);
       }
     } catch (e) {
       openNotificationWithIcon('error', e.message);

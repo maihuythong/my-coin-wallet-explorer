@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import './style.scss';
-import { Button, notification, Form, Input } from 'antd';
 import {
-  KeyOutlined,
+  KeyOutlined
 } from '@ant-design/icons';
+import { Button, Form, Input, notification } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import authApi from '../../../api/authApi';
+import walletApi from '../../../api/walletApi';
+import './style.scss';
 
 const Success = (props) => {
   let history = useHistory();
@@ -14,12 +15,31 @@ const Success = (props) => {
   const [showAddress, setShowAddress] = useState(false);
   const [address, setAddress] = useState('');
 
-  console.log(walletId);
-
   const openNotificationWithIcon = (type, message) => {
     notification[type]({
       message: message
     });
+  };
+
+  const getAddress = async () => {
+    try {
+      setIsLoading(true);
+      let params = { walletId };
+      const response = await walletApi.getAddress(params);
+      if (response.err === '400') {
+        setIsLoading(false);
+      } else {
+        if (response?.length != 1) {
+          history.push('/success');
+          throw new Error("Wallet have no address, please create address before!");
+        }
+        setAddress(response[0]);
+        setIsLoading(false);
+      }
+    } catch (e) {
+      openNotificationWithIcon('error', e.message);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -27,6 +47,14 @@ const Success = (props) => {
     if (!wId) { history.push('/') }
     setWalletId(wId);
   }, [])
+
+  useEffect(() => {
+    if (walletId) getAddress();
+  }, [walletId])
+
+  useEffect(() => {
+    if (address) history.push('/account');
+  }, [address]);
 
   const createAddress = async (params) => {
     try {

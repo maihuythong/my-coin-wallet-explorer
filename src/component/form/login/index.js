@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, notification } from 'antd';
 import {
   KeyOutlined,
+  UserOutlined,
+  LockOutlined
 } from '@ant-design/icons';
-import './style.scss';
-import authApi from '../../../api/authApi';
+import { Button, Form, Input, notification } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import authApi from '../../../api/authApi';
+import './style.scss';
 
 const RegisterForm = (props) => {
   let history = useHistory();
@@ -25,30 +27,37 @@ const RegisterForm = (props) => {
 
   useEffect(() => {
     let wid = localStorage.getItem('walletId');
-    if (wid) history.push('/account');
+    if (wid) {
+      openNotificationWithIcon('warning', 'You have already access a wallet');
+      history.push('/account');
+    }
   }, [walletId])
 
   const handleLogin = async (params) => {
     try {
       setIsLoading(true);
-      const response = await authApi.createWallet(params);
-      if (response.err === '400') {
+      const response = await authApi.accessWallet(params);
+      console.log(response);
+      if (response.code === '401') {
+        openNotificationWithIcon('error', response.message);
         setIsLoading(false);
       } else {
-        const { id } = response;
-        localStorage.setItem('walletId', id);
+        localStorage.setItem('walletId', params.walletId);
         setIsLoading(false);
         setLoginState();
-        openNotificationWithIcon('success', 'Wallet created');
+        openNotificationWithIcon('success', 'Access wallet successfully!');
         history.push('/success');
       }
     } catch (e) {
       openNotificationWithIcon('error', e.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className='container'>
+
       <Form
         name='normal_login'
         className='login-form'
@@ -58,19 +67,31 @@ const RegisterForm = (props) => {
         onFinish={handleSubmit}
       >
         <Form.Item
-          name='password'
-          type='password'
-          className='input'
+          name='walletId'
           rules={[
             {
               required: true,
-              message: 'Please input your password! Greater than 6 characters',
-              min: 7
+              message: 'Please input your Wallet ID!',
             },
           ]}
         >
-          <Input.Password
-            prefix={<KeyOutlined className='site-form-item-icon' />}
+          <Input
+            prefix={<UserOutlined className='site-form-item-icon' />}
+            placeholder='Wallet ID'
+          />
+        </Form.Item>
+        <Form.Item
+          name='password'
+          rules={[
+            {
+              required: true,
+              message: 'Please input your Password!',
+            },
+          ]}
+        >
+          <Input
+            prefix={<LockOutlined className='site-form-item-icon' />}
+            type='password'
             placeholder='Password'
           />
         </Form.Item>
@@ -82,11 +103,8 @@ const RegisterForm = (props) => {
             className='login-form-button'
             loading={isLoading}
           >
-            Register
+            Access
           </Button>
-          <div>
-            Already have wallet?  <a href='/login'>Access now!</a>
-          </div>
         </Form.Item>
       </Form>
     </div>

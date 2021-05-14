@@ -6,8 +6,8 @@ const Large = (props) => {
   let history = useHistory();
 
   return (
-    <div className="btn">
-      <div onClick={() => { history.push(props.path) }}>
+    <div onClick={() => { history.push(props.path) }}>
+      <div className="btn">
         <span className="text">{props.text}</span>
       </div>
     </div>
