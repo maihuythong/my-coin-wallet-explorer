@@ -9,6 +9,7 @@ import {
 import './style.scss';
 import walletApi from '../../api/walletApi';
 import { useHistory } from 'react-router-dom';
+import LargeInfo from '../largeinfo';
 
 const Balance = (props) => {
   let history = useHistory();
@@ -93,18 +94,15 @@ const Balance = (props) => {
 
   return (
     <div className='account'>
-      <div className='balance'>
-        <div>
-          Your balance: {balance}
+      <div className='wallet-info'>
+        <div className='balance'>
+          <LargeInfo type='Address' value={address} />
         </div>
-      </div>
-      <div className='address'>
-        <div>
-          Address: {address}
+        <div className='address'>
+          <LargeInfo type='Balance' value={balance} unit='PPC' />
         </div>
       </div>
       <div className='transaction'>
-        <div>Create transaction</div>
         <div className='form'>
           <Form
             name='normal_login'

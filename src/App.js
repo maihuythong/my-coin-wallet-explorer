@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import Account from './component/account';
+import SignIn from './component/auth/signin';
+import RegisterForm from './component/auth/signup';
+import Success from './component/auth/success';
+import Explorer from './component/explorer';
 import HeaderBar from './component/headerBar';
 import Home from './component/home';
-import RegisterForm from './component/auth/signup';
-import SignIn from './component/auth/signin';
-import Success from './component/auth/success';
-import Account from './component/account';
-import Explorer from './component/explorer';
-// import { QueryParamProvider } from 'use-query-params';
-// import SignIn from './components/account/signIn';
-// import SignUp from './components/account/signUp';
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -22,7 +19,6 @@ const App = () => {
     <BrowserRouter>
       <HeaderBar isLogin={isLogin} />
       <Switch>
-        {/* <QueryParamProvider> */}
         <Route exact path='/'>
           <Home />
         </Route>
@@ -41,7 +37,6 @@ const App = () => {
         <Route exact path='/explorer'>
           <Explorer />
         </Route>
-        {/* </QueryParamProvider> */}
       </Switch>
     </BrowserRouter>
   );

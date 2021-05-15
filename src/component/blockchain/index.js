@@ -32,7 +32,7 @@ const Blockchain = (props) => {
     let res = [];
     const ret = await data.map(el => {
       let element;
-      element = { index: el.index, previousHash: el.previousHash, nonce: el.nonce };
+      element = { index: el.index, previousHash: el.previousHash, nonce: el.nonce, hash: el.hash };
       element.timestamp = timeAgo.format(new Date(el?.timestamp * 1000 ?? null));
       element.reward = el?.transactions[0]?.data?.outputs[0]?.amount ?? null;
 
@@ -71,6 +71,13 @@ const Blockchain = (props) => {
       dataIndex: 'previousHash',
       align: 'center',
       render: previousHash => <EllipsisText text={previousHash} length={"40"} />
+    },
+    {
+      title: 'Hash',
+      key: 'hash',
+      dataIndex: 'hash',
+      align: 'center',
+      render: hash => <EllipsisText text={hash} length={"40"} />
     },
     {
       title: 'Reward',

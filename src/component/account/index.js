@@ -12,14 +12,9 @@ const Account = (props) => {
   let history = useHistory();
 
   return (
-    <Tabs defaultActiveKey="1">
-      <TabPane tab="INFO" key="1">
-        <Balance />
-      </TabPane>
-      {/* <TabPane tab="TRANSACTION" key="2">
-        <Transaction />
-      </TabPane> */}
-    </Tabs>
+    <div className="account">
+      <Balance />
+    </div>
   );
 };
 
