@@ -1,6 +1,6 @@
 import React from 'react';
-import './style.scss';
 import RegisterForm from '../../form/register';
+import './style.scss';
 
 const SignUp = (props) => {
 

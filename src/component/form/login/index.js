@@ -1,7 +1,5 @@
 import {
-  KeyOutlined,
-  UserOutlined,
-  LockOutlined
+  LockOutlined, UserOutlined
 } from '@ant-design/icons';
 import { Button, Form, Input, notification } from 'antd';
 import React, { useEffect, useState } from 'react';

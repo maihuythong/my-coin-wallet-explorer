@@ -29,7 +29,7 @@ const Success = (props) => {
       if (response.err === '400') {
         setIsLoading(false);
       } else {
-        if (response?.length != 1) {
+        if (response?.length !== 1) {
           history.push('/success');
           throw new Error("Wallet have no address, please create address before!");
         }

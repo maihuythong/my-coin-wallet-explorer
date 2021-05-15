@@ -1,6 +1,5 @@
 import { notification, Table } from 'antd';
 import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
 import React, { useEffect, useState } from 'react';
 import EllipsisText from "react-ellipsis-text";
 import explorerApi from '../../api/explorerApi';
@@ -39,7 +38,7 @@ const Blockchain = (props) => {
       res.unshift(element);
     });
 
-    if (res.length != 0) setData(res);
+    if (res.length !== 0) setData(res);
   }
 
   useEffect(() => {

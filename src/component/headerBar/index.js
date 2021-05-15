@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import './style.scss';
-import { Row, Col, Typography, Layout, Menu } from 'antd';
 import { MenuOutlined, PoweroffOutlined } from '@ant-design/icons';
+import { Col, Layout, Menu, Row } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import './style.scss';
 const { Header, Content } = Layout;
-const { Title } = Typography;
 
 const HeaderBar = (props) => {
   let history = useHistory();
 
   const [walletId, setWalletId] = useState('');
-
-
 
   useEffect(() => {
     setWalletId(localStorage.getItem('walletId'));

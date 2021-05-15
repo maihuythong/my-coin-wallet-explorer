@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, notification } from 'antd';
 import {
-  KeyOutlined,
+  KeyOutlined
 } from '@ant-design/icons';
-import './style.scss';
-import authApi from '../../../api/authApi';
+import { Button, Form, Input, notification } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import authApi from '../../../api/authApi';
+import './style.scss';
 
 const RegisterForm = (props) => {
   let history = useHistory();

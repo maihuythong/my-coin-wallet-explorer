@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Table, Tag, Space, notification } from 'antd';
-import './style.scss';
-import explorerApi from '../../api/explorerApi';
-import { useHistory } from 'react-router-dom';
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
+import { notification, Table, Tag } from 'antd';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+import React, { useEffect, useState } from 'react';
 import EllipsisText from "react-ellipsis-text";
+import explorerApi from '../../api/explorerApi';
+import './style.scss';
 
 TimeAgo.addDefaultLocale(en)
 
 const Type = ({ type }) => {
   let color = 'green';
-  if (type == 'regular') color = 'green'
-  if (type == 'fee') color = 'geekblue'
-  if (type == 'reward') color = 'volcano'
+  if (type === 'regular') color = 'green'
+  if (type === 'fee') color = 'geekblue'
+  if (type === 'reward') color = 'volcano'
   return (
     <Tag color={color} key={type}>
       {type.toUpperCase()}
@@ -28,7 +27,7 @@ const openNotificationWithIcon = (type, message) => {
 };
 
 const Transaction = (props) => {
-  let history = useHistory();
+
   const [data, setData] = useState([]);
   const timeAgo = new TimeAgo('en-US')
 
@@ -57,7 +56,7 @@ const Transaction = (props) => {
       res.unshift(element);
     });
 
-    if (res.length != 0) setData(res);
+    if (res.length !== 0) setData(res);
   }
 
   useEffect(() => {

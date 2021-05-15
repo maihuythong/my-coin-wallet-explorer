@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import './style.scss';
-import walletApi from '../../api/walletApi';
-import { useHistory } from 'react-router-dom';
-import { Tabs } from 'antd';
+import React from 'react';
 import Balance from '../balance';
-import Transaction from '../transaction';
-
-const { TabPane } = Tabs;
+import './style.scss';
 
 const Account = (props) => {
-  let history = useHistory();
 
   return (
     <div className="account">

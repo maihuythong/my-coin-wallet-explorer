@@ -1,9 +1,7 @@
 import React from 'react';
 import './style.scss';
-import { useHistory } from 'react-router-dom';
 
 const LargeInfo = (props) => {
-  let history = useHistory();
 
   return (
     <div className="info">

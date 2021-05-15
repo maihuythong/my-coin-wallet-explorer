@@ -1,6 +1,6 @@
 import React from 'react';
-import './style.scss';
 import { useHistory } from 'react-router-dom';
+import './style.scss';
 
 const Large = (props) => {
   let history = useHistory();

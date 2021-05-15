@@ -1,6 +1,6 @@
 import React from 'react';
-import './style.scss';
 import LoginForm from '../../form/login';
+import './style.scss';
 
 const SignIn = (props) => {
 

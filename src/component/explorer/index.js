@@ -1,6 +1,5 @@
 import { Tabs } from 'antd';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import Blockchain from '../blockchain';
 import Transaction from '../transaction';
 import './style.scss';

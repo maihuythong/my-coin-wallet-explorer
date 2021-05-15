@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, notification } from 'antd';
 import {
   KeyOutlined,
-  UserOutlined,
-  MoneyCollectOutlined,
-} from '@ant-design/icons';
 
-import './style.scss';
-import walletApi from '../../api/walletApi';
+  MoneyCollectOutlined, UserOutlined
+} from '@ant-design/icons';
+import { Button, Form, Input, notification } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import walletApi from '../../api/walletApi';
 import LargeInfo from '../largeinfo';
+import './style.scss';
+
 
 const Balance = (props) => {
   let history = useHistory();
@@ -32,7 +32,7 @@ const Balance = (props) => {
       if (response.err === '400') {
         setIsLoading(false);
       } else {
-        if (response?.length != 1) {
+        if (response?.length !== 1) {
           history.push('/success');
           throw new Error("Wallet have no address, please create address before!");
         }
@@ -78,17 +78,22 @@ const Balance = (props) => {
         params.fromAddress = address;
       }
       const response = await walletApi.createTransaction(params);
-      if (response.status === '209') {
+      console.log(response);
+      if (response.status === 202) {
         openNotificationWithIcon('error', response.message);
-        setIsLoading(false);
+      }
+      else if (response.status === 200) {
+        openNotificationWithIcon('error', response.message);
       } else {
         openNotificationWithIcon('success', 'Transaction created successfully!');
-        setIsLoading(false);
         getBalance(address);
       }
     } catch (e) {
+      console.log('throw');
       openNotificationWithIcon('error', e.message);
+    } finally {
       setIsLoading(false);
+
     }
   }
 
