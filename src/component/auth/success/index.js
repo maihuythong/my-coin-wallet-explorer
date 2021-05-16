@@ -79,60 +79,60 @@ const Success = (props) => {
 
   return (
     <div className='success'>
-      <div>
-        Register new wallet successfully!
-      </div>
       <div className='wallet-id'>
-        <div>
+        <div className='text'>
           Your wallet id:
       </div>
         <input type='text' value={walletId} className='ip' />
       </div>
-      <div>Please new address to manipulation</div>
+      <div className='form-create'>
+
+        <div className='text'>Please new address to manipulation</div>
 
 
-      <Form
-        name='normal_login'
-        className='login-form'
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={createAddress}
-      >
-        <Form.Item
-          name='password'
-          type='password'
-          className='input'
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password! Greater than 6 characters',
-              min: 7
-            },
-          ]}
+        <Form
+          name='normal_login'
+          className='login-form'
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={createAddress}
         >
-          <Input.Password
-            prefix={<KeyOutlined className='site-form-item-icon' />}
-            placeholder='Password'
-          />
-        </Form.Item>
-
-        <Form.Item>
-          <Button
-            type='primary'
-            htmlType='submit'
-            className='login-form-button'
-            loading={isLoading}
+          <Form.Item
+            name='password'
+            type='password'
+            className='input'
+            rules={[
+              {
+                required: true,
+                message: 'Please input your password! Greater than 6 characters',
+                min: 7
+              },
+            ]}
           >
-            Create Address
+            <Input.Password
+              prefix={<KeyOutlined className='site-form-item-icon' />}
+              placeholder='Password'
+            />
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              type='primary'
+              htmlType='submit'
+              className='login-form-button'
+              loading={isLoading}
+            >
+              Create Address
           </Button>
 
-        </Form.Item>
-      </Form>
+          </Form.Item>
+        </Form>
 
-      <div visibility={showAddress ? 'visible' : 'hidden'}>
-        <span>Your new address:</span>
-        <input type='text' value={address} />
+        <div className='address'>
+          <span>Your new address:</span>
+          <input className='ip' type='text' value={address} />
+        </div>
       </div>
     </div>
   );
